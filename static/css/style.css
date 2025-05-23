@@ -20,6 +20,11 @@
   /* 表格相关 */
   --color-table-bg: #fffcf7;        /* 表格背景 */
   --color-table-header-bg: #f7f3eb; /* 表头背景 */
+  /* 链接 */
+  --link-color-text: #3f72af;
+  --link-underline: #46cdcf; /* 半透明下划线 */
+  --link-hover-ratio: 95%;                /* 悬停遮罩比例 */
+  --link-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑过渡曲线 */
 }
 
 /* 基础设置 */
@@ -36,6 +41,7 @@ body {
 /* 导航菜单 */
 .menu {
   padding: 0;
+  list-style: none;
   display: flex;
   justify-content: center;
   gap: 1.5rem;
@@ -64,7 +70,7 @@ body {
 
 /* 页脚 */
 footer {
-  margin-top: 3rem;
+  /*margin-top: 3rem;*/
   padding: 1.5rem 0;
   color: var(--color-meta);
 }
@@ -127,7 +133,27 @@ th {
 tr:nth-child(even) {
   background: var(--color-zebra);
 }
+/* 通用链接样式 (作用于正文中的a标签) */
+a[href]:not(.menu a) {
+  color: var(--link-color-text);
+  text-decoration: none;
+  background-image: linear-gradient(var(--link-underline), var(--link-underline));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0% 100%;
+  transition: var(--link-transition);
+  padding-bottom: 0.1em;
+}
 
+a[href]:not(.menu a):hover {
+  color: var(--color-primary-dark);
+  background-size: 100% 1px;
+}
+/* 排除所有锚点标记 */
+a[name]{
+  background-image: none !important;
+  color: inherit !important;
+}
 /* 响应式设计 */
 @media (max-width: 640px) {
   .menu {
